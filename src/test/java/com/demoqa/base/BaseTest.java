@@ -30,7 +30,7 @@ public class BaseTest {
         options.addArguments("--disable-gpu");
         options.addArguments("--window-size=1920,1080");
         // Uncomment the line below to run in headless mode
-        // options.addArguments("--headless");
+        options.addArguments("--headless");
         
         // Initialize WebDriver
         driver = new ChromeDriver(options);

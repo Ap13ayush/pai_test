@@ -116,9 +116,14 @@ public class DataDrivenStudentFormTests extends BaseTest {
         
         System.out.println("Data-driven form submission test passed for: " + expectedFullName);
         
-        // Close the modal for next iteration
-        WebElement closeButton = driver.findElement(By.id("closeLargeModal"));
-        closeButton.click();
+        // Close the modal for next iteration using JavaScript to avoid ad interference
+        try {
+            WebElement closeButton = driver.findElement(By.id("closeLargeModal"));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", closeButton);
+        } catch (Exception e) {
+            // Alternative: Press Escape key to close modal
+            driver.findElement(By.tagName("body")).sendKeys(Keys.ESCAPE);
+        }
         
         // Wait for modal to close
         wait.until(ExpectedConditions.invisibilityOf(modal));
